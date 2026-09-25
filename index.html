@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Little Corn Island Fishing Charters</title>
+    <style>
+      :root {
+        --sky: #eaf9ff;
+        --ocean: #0d2238;
+        --cyan: #00bcd4;
+        --cyan-dark: #009bb1;
+        --ink: #1f2d3d;
+        --muted: #5d6977;
+        --card: #ffffff;
+        --shadow: 0 16px 40px rgba(15, 62, 88, 0.12);
+      }
+
+      * { margin: 0; padding: 0; box-sizing: border-box; font-family: Arial, sans-serif; }
+      html { scroll-behavior: smooth; }
+      body { background: #f5fbff; color: var(--ink); line-height: 1.6; }
+      a { text-decoration: none; }
+      img { display: block; max-width: 100%; }
+      a, button, input, select, textarea, .card, .gallery img {
+        -webkit-tap-highlight-color: transparent;
+        touch-action: manipulation;
+      }
+
+      header {
+        min-height: 100vh;
+        background: linear-gradient(rgba(8, 19, 30, 0.55), rgba(8, 19, 30, 0.55)), url('images/486531484_1708993806651839_3594468382102249992_n.jpg') center/cover no-repeat;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        color: white;
+        padding: 30px 20px;
+      }
+
+      .hero { max-width: 860px; }
+      .hero h1 { font-size: clamp(2.8rem, 6vw, 5rem); letter-spacing: 0.04em; margin-bottom: 20px; }
+      .hero p { font-size: clamp(1.1rem, 2vw, 1.45rem); max-width: 750px; margin: 0 auto 30px; color: rgba(255,255,255,0.92); }
+      .rating-bar {
+        display: inline-flex;
+        align-items: center;
+        gap: 12px;
+        margin: 0 auto 25px;
+        padding: 10px 18px;
+        background: rgba(255, 255, 255, 0.12);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 999px;
+        backdrop-filter: blur(4px);
+        font-weight: 700;
+      }
+      .stars { color: #ffd166; letter-spacing: 0.15em; }
+      .btn, button {
+        background: var(--cyan); color: white; border: none; padding: 15px 30px; border-radius: 999px; font-weight: 700; cursor: pointer; transition: 0.25s ease;
+        min-height: 48px;
+      }
+      .btn:hover, button:hover { background: var(--cyan-dark); transform: translateY(-2px); }
+      .btn:active, button:active { transform: translateY(0); opacity: 0.96; }
+
+      section { padding: 80px 10%; }
+      .section-title { text-align: center; font-size: clamp(2rem, 4vw, 3rem); margin-bottom: 30px; }
+      .about {
+        max-width: 920px; margin: 0 auto; text-align: center; line-height: 1.8; font-size: 1.08rem; color: var(--muted);
+      }
+
+      .gallery, .grid { display: grid; gap: 25px; }
+      .gallery { grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); }
+      .gallery img {
+        width: 100%; height: 260px; object-fit: cover; border-radius: 18px; cursor: pointer;
+        box-shadow: var(--shadow); transition: transform 0.25s ease;
+        user-select: none;
+      }
+      .gallery img:hover { transform: scale(1.02); }
+      .gallery img:focus-visible, .close:focus-visible, .btn:focus-visible, button:focus-visible {
+        outline: 3px solid rgba(0, 188, 212, 0.45);
+        outline-offset: 2px;
+      }
+      .grid { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+      .card {
+        background: var(--card); border-radius: 20px; overflow: hidden; box-shadow: var(--shadow);
+      }
+      .card img { width: 100%; height: 220px; object-fit: cover; }
+      .card-content { padding: 22px 20px 26px; }
+      .card-content h3 { margin-bottom: 10px; font-size: 1.4rem; }
+      .card-content p { color: var(--muted); }
+      .price { color: var(--cyan-dark); font-weight: 700; margin-bottom: 12px; }
+
+      .booking { background: var(--sky); }
+      form {
+        max-width: 900px; margin: 0 auto; background: white; padding: 35px; border-radius: 22px; box-shadow: var(--shadow);
+      }
+      .form-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 15px; }
+      input, select, textarea {
+        width: 100%; padding: 15px 16px; border: 1px solid #d8e3ea; border-radius: 12px; font-size: 1rem; background: #fdfdfd;
+      }
+      input:focus, select:focus, textarea:focus { outline: 2px solid rgba(0, 188, 212, 0.18); border-color: var(--cyan); }
+      textarea { min-height: 120px; margin-top: 15px; resize: vertical; }
+      .submit-btn { width: 100%; margin-top: 15px; }
+      .whatsapp-btn {
+        display: block;
+        width: fit-content;
+        margin: 20px auto 0;
+        background: #25d366;
+        color: white;
+        padding: 15px 30px;
+        border-radius: 999px;
+        font-weight: 700;
+        transition: 0.25s ease;
+      }
+      .whatsapp-btn:hover { background: #1da851; transform: translateY(-2px); }
+      .whatsapp-btn:focus-visible {
+        outline: 3px solid rgba(37, 211, 102, 0.35);
+        outline-offset: 2px;
+      }
+
+      .review-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 22px;
+        max-width: 1100px;
+        margin: 0 auto;
+      }
+      .testimonial {
+        background: white;
+        border-left: 6px solid var(--cyan);
+        box-shadow: var(--shadow);
+        border-radius: 18px;
+        padding: 24px 22px;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        min-height: 190px;
+      }
+      .testimonial .stars {
+        color: #ffd166;
+        font-size: 1.2rem;
+        letter-spacing: 0.12em;
+      }
+      .testimonial p {
+        color: var(--muted);
+        font-size: 1rem;
+        line-height: 1.7;
+      }
+      .testimonial strong {
+        color: var(--ink);
+      }
+      .testimonial .author {
+        margin-top: auto;
+        font-weight: 700;
+        color: var(--ocean);
+      }
+      footer { background: var(--ocean); color: white; text-align: center; padding: 32px 20px; }
+      footer h3 { margin-bottom: 8px; }
+
+      .lightbox {
+        display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.9); justify-content: center; align-items: center; z-index: 9999;
+      }
+      .lightbox img { max-width: min(92vw, 1200px); max-height: 90vh; border-radius: 14px; box-shadow: 0 20px 60px rgba(0,0,0,0.35); }
+      .close {
+        position: absolute; top: 26px; right: 32px; font-size: 3rem; color: white; cursor: pointer; user-select: none;
+      }
+
+      @media (max-width: 768px) {
+        section { padding: 70px 6%; }
+        .form-grid { grid-template-columns: 1fr; }
+        .hero h1 { font-size: 2.6rem; }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="hero">
+        <div class="rating-bar">
+          <span class="stars">★★★★★</span>
+          <span>4.5/5 Rating</span>
+          <span>• 1,867 followers</span>
+        </div>
+        <h1>Little Corn Island Fishing Charters</h1>
+        <p>Water taxi transfers, snorkeling trips, fly fishing, and live bait adventures — all guided for unforgettable days offshore.</p>
+        <a class="btn" href="#booking">Book Your Charter</a>
+      </div>
+    </header>
+
+    <main>
+      <section>
+        <h2 class="section-title">Why Choose Our Island Charters?</h2>
+        <div class="about">
+          Little Corn Island is a world-class fishing and watersports destination. From water taxi pickups to fly fishing runs and snorkeling excursions, we help guests experience the best of the Caribbean with local knowledge and comfortable, expert-guided trips.
+        </div>
+      </section>
+
+      <section id="gallery">
+        <h2 class="section-title">Photo Gallery</h2>
+        <div class="gallery">
+          <img src="images/486531484_1708993806651839_3594468382102249992_n.jpg" alt="Little Corn Island boat scene" tabindex="0" onclick="openLightbox(this.src)" onkeydown="if(event.key === 'Enter' || event.key === ' ') { event.preventDefault(); openLightbox(this.src); }" />
+          <img src="images/487462710_1717400212477865_3770431967791046128_n.jpg" alt="Island fishing day" tabindex="0" onclick="openLightbox(this.src)" onkeydown="if(event.key === 'Enter' || event.key === ' ') { event.preventDefault(); openLightbox(this.src); }" />
+          <img src="images/488624335_1724622991755587_4742067630034097568_n.jpg" alt="Caribbean fishing trip" tabindex="0" onclick="openLightbox(this.src)" onkeydown="if(event.key === 'Enter' || event.key === ' ') { event.preventDefault(); openLightbox(this.src); }" />
+          <img src="images/488770609_1724623135088906_1031303960666140648_n.jpg" alt="Little Corn Island fishing" tabindex="0" onclick="openLightbox(this.src)" onkeydown="if(event.key === 'Enter' || event.key === ' ') { event.preventDefault(); openLightbox(this.src); }" />
+          <img src="images/489053373_1725768554974364_1857251865362531855_n.jpg" alt="Captain Alfonso on the boat" tabindex="0" onclick="openLightbox(this.src)" onkeydown="if(event.key === 'Enter' || event.key === ' ') { event.preventDefault(); openLightbox(this.src); }" />
+          <img src="images/alfonso%20plummer.jpg" alt="Alfonso Plummer fishing" tabindex="0" onclick="openLightbox(this.src)" onkeydown="if(event.key === 'Enter' || event.key === ' ') { event.preventDefault(); openLightbox(this.src); }" />
+          <img src="images/salefish.jpg" alt="Large catch on Little Corn Island" tabindex="0" onclick="openLightbox(this.src)" onkeydown="if(event.key === 'Enter' || event.key === ' ') { event.preventDefault(); openLightbox(this.src); }" />
+          <img src="images/673742560_2066298834254666_839750789301501173_n.jpg" alt="Island charter fishing" tabindex="0" onclick="openLightbox(this.src)" onkeydown="if(event.key === 'Enter' || event.key === ' ') { event.preventDefault(); openLightbox(this.src); }" />
+          <img src="images/675359410_2066299317587951_1998672492004315812_n.jpg" alt="Open water charter" tabindex="0" onclick="openLightbox(this.src)" onkeydown="if(event.key === 'Enter' || event.key === ' ') { event.preventDefault(); openLightbox(this.src); }" />
+        </div>
+      </section>
+
+      <section>
+        <h2 class="section-title">Island Fishing &amp; Water Adventures</h2>
+        <div class="grid">
+          <div class="card"><div class="card-content"><h3>🚤 Water Taxi Transfers</h3><p>Fast and reliable island transfers between the mainland and Little Corn Island.</p></div></div>
+          <div class="card"><div class="card-content"><h3>🤿 Snorkeling Trips</h3><p>Explore vibrant reef systems, clear blue water and marine life in the surrounding waters.</p></div></div>
+          <div class="card"><div class="card-content"><h3>🎣 Fly Fishing</h3><p>Target bonefish, permit and other trophy species in shallow tropical flats.</p></div></div>
+          <div class="card"><div class="card-content"><h3>🪝 Live Bait Fishing</h3><p>Fish deep, reef and offshore grounds with expert local baiting and tactics.</p></div></div>
+        </div>
+      </section>
+
+      <section>
+        <h2 class="section-title">Charter Packages</h2>
+        <div class="grid">
+          <div class="card">
+            <img src="images/488640560_1721348732083013_10390324121819204_n.jpg" alt="Water taxi charter" />
+            <div class="card-content"><h3>Water Taxi</h3><p class="price">From $35 / Trip</p><p>Comfortable island transfers and coastal transport service.</p><button type="button">Reserve Now</button></div>
+          </div>
+          <div class="card">
+            <img src="images/488922640_1724623068422246_6973448637494401776_n.jpg" alt="Snorkeling adventure" />
+            <div class="card-content"><h3>Snorkeling Tour</h3><p class="price">From $55 / Person</p><p>Half-day guided reef exploration with all gear included.</p><button type="button">Book Tour</button></div>
+          </div>
+          <div class="card">
+            <img src="images/674189504_2066298980921318_2177818584429410618_n.jpg" alt="Fly fishing charter" />
+            <div class="card-content"><h3>Fly Fishing</h3><p class="price">From $350 / Day</p><p>Flat-water specialist trips designed for trophy gamefish.</p><button type="button">Check Availability</button></div>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2 class="section-title">What Guests Say</h2>
+        <div class="review-grid">
+          <article class="testimonial">
+            <div class="stars">★★★★★</div>
+            <p>“Captain Alfonso Plummer is amazing — knowledgeable, patient, and incredibly fun to fish with. He made the whole trip feel easy and unforgettable, and the experience on the water was absolutely worth it.”</p>
+            <div class="author">— Maya R.</div>
+          </article>
+
+          <article class="testimonial">
+            <div class="stars">★★★★★</div>
+            <p>“The snorkeling and island transfer were smooth from start to finish. Alfonso knew exactly where to go and made the day feel relaxed, safe, and full of great local insight.”</p>
+            <div class="author">— Daniel K.</div>
+          </article>
+
+          <article class="testimonial">
+            <div class="stars">★★★★★</div>
+            <p>“Best island charter experience we had in Nicaragua. The fishing was excellent, the boat was comfortable, and Alfonso’s guidance made the whole trip memorable for the whole family.”</p>
+            <div class="author">— Luis T.</div>
+          </article>
+        </div>
+      </section>
+
+      <section id="booking" class="booking">
+        <h2 class="section-title">Book Your Charter</h2>
+        <form action="https://formsubmit.co/charlie.plummer.work@gmail.com" method="POST">
+          <div class="form-grid">
+            <input type="text" name="name" placeholder="Full Name" aria-label="Full Name" required />
+            <input type="email" name="email" placeholder="Email Address" aria-label="Email Address" required />
+            <input type="date" aria-label="Departure date" />
+            <input type="date" aria-label="Return date" />
+            <select aria-label="Select Charter"><option>Select Charter</option><option>Water Taxi</option><option>Snorkeling Trip</option><option>Fly Fishing</option><option>Live Bait Fishing</option></select>
+            <select aria-label="Passengers"><option>Passengers</option><option>1 Passenger</option><option>2 Passengers</option><option>3 Passengers</option><option>4+ Passengers</option></select>
+          </div>
+          <textarea name="message" placeholder="Booking Details" aria-label="Booking Details"></textarea>
+          <button class="submit-btn" type="submit">Submit Booking Request</button>
+        </form>
+      </section>
+
+      <section>
+        <h2 class="section-title">Contact Us</h2>
+        <form>
+          <div class="form-grid">
+            <input type="text" placeholder="Name" aria-label="Name" />
+            <input type="email" placeholder="Email" aria-label="Email" />
+          </div>
+          <textarea placeholder="Your Message" aria-label="Your Message"></textarea>
+          <button class="submit-btn" type="submit">Send Message</button>
+        </form>
+        <a href="https://wa.me/50585424793" class="whatsapp-btn" target="_blank" rel="noopener noreferrer">WhatsApp Us</a>
+      </section>
+    </main>
+
+    <footer>
+      <h3>Little Corn Island Charters</h3>
+      <p>Fishing, snorkeling, and island transport with local expertise.</p>
+    </footer>
+
+    <div id="lightbox" class="lightbox" role="dialog" aria-label="Expanded gallery image">
+      <span class="close" onclick="closeLightbox()" aria-label="Close">&times;</span>
+      <img id="lightbox-img" alt="Expanded gallery image" />
+    </div>
+
+    <script>
+      function openLightbox(src) {
+        document.getElementById('lightbox').style.display = 'flex';
+        document.getElementById('lightbox-img').src = src;
+      }
+      function closeLightbox() {
+        document.getElementById('lightbox').style.display = 'none';
+      }
+      document.getElementById('lightbox').addEventListener('click', function (event) {
+        if (event.target === this) closeLightbox();
+      });
+      document.addEventListener('keydown', function (event) {
+        if (event.key === 'Escape') {
+          closeLightbox();
+        }
+      });
+    </script>
+  </body>
+</html>
